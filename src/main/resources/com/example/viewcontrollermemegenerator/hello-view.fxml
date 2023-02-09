@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -11,8 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="793.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.viewcontrollermemegenerator.HelloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="812.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.viewcontrollermemegenerator.HelloController">
    <children>
       <StackPane layoutX="14.0" layoutY="24.0" prefHeight="150.0" prefWidth="200.0">
          <children>
@@ -24,16 +24,23 @@
             </Label>
          </children>
       </StackPane>
-      <Button fx:id="previousButton" layoutX="458.0" layoutY="147.0" mnemonicParsing="false" onAction="#prevButtonPressed" prefHeight="139.0" prefWidth="85.0" text="Previous" />
-      <Button fx:id="nextButton" layoutX="550.0" layoutY="147.0" mnemonicParsing="false" onAction="#nextButtonPressed" prefHeight="139.0" prefWidth="85.0" text="Next" />
-      <Button fx:id="newButton" layoutX="458.0" layoutY="300.0" mnemonicParsing="false" onAction="#newButtonPressed" prefHeight="86.0" prefWidth="177.0" text="New..." />
+      <Button fx:id="nextButton" layoutX="550.0" layoutY="147.0" mnemonicParsing="false" onAction="#nextButtonPressed" prefHeight="139.0" prefWidth="85.0" text="&gt;&gt;">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="newButton" layoutX="458.0" layoutY="300.0" mnemonicParsing="false" onAction="#newButtonPressed" prefHeight="86.0" prefWidth="177.0" text="New...">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
       <TextField fx:id="typeMemeText" layoutX="46.0" layoutY="520.0" onAction="#memeTyped" prefHeight="35.0" prefWidth="425.0" promptText="Type your meme text....">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
       <ColorPicker fx:id="memeTextColor" layoutX="480.0" layoutY="524.0" onAction="#memeColorChanged" prefHeight="26.0" prefWidth="141.0" />
-      <TextArea fx:id="typeLongMemeText" layoutX="46.0" layoutY="559.0" onKeyTyped="#longMemeTyped" prefHeight="200.0" prefWidth="577.0" promptText="Type a really long meme text here...">
+      <TextArea fx:id="typeLongMemeText" layoutX="46.0" layoutY="559.0" onKeyTyped="#longMemeTyped" prefHeight="61.0" prefWidth="577.0" promptText="Type a really long meme text here...">
          <font>
             <Font size="18.0" />
          </font>
@@ -43,7 +50,17 @@
             <Font name="Arial Narrow Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="addImageButton1" layoutX="458.0" layoutY="408.0" mnemonicParsing="false" onAction="#deleteImage" prefHeight="86.0" prefWidth="177.0" text="Delete" />
+      <Button fx:id="addImageButton1" layoutX="458.0" layoutY="408.0" mnemonicParsing="false" onAction="#deleteImage" prefHeight="86.0" prefWidth="177.0" text="Delete">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
       <ComboBox fx:id="choosePicture" layoutX="458.0" layoutY="98.0" onAction="#photoChosen" prefWidth="174.0" />
+      <Button fx:id="previousButton" layoutX="453.0" layoutY="146.0" mnemonicParsing="false" onAction="#prevButtonPressed" prefHeight="139.0" prefWidth="85.0" text="&lt;&lt;">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <ListView fx:id="allTheTexts" editable="true" layoutX="46.0" layoutY="628.0" prefHeight="156.0" prefWidth="577.0" />
    </children>
 </Pane>

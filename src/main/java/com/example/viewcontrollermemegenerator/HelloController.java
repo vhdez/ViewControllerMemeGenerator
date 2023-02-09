@@ -1,5 +1,7 @@
 package com.example.viewcontrollermemegenerator;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -25,10 +27,13 @@ public class HelloController {
     public Label pictureNumberLabel;
     public Label memeTextDisplay;
     public ColorPicker memeTextColor;
+    public ListView allTheTexts;
 
     // All of the App's data (its Model)
     ArrayList<Image> images;
     int currentImageNumber;
+    ArrayList<String> allOfTheMemesArrayList;
+    ObservableList<String> allOfTheMemesObservableList;
 
     // the setup code for your GUI
     public void initialize() throws FileNotFoundException {
@@ -51,6 +56,10 @@ public class HelloController {
         photoView.setImage(image1);
         choosePicture.getSelectionModel().select(currentImageNumber);
         pictureNumberLabel.setText("Picture #" + (currentImageNumber+1) + " of " + images.size());
+
+        allOfTheMemesArrayList = new ArrayList<String>();
+        allOfTheMemesObservableList = FXCollections.observableArrayList();
+        allTheTexts.setItems(allOfTheMemesObservableList);
     }
 
     // all of the Controls' onAction methods
@@ -123,6 +132,11 @@ public class HelloController {
     public void memeTyped() {
         memeTextDisplay.setFont(new Font("Comic Sans MS", 60));
         memeTextDisplay.setText("#" + typeMemeText.getText());
+
+//        allTheTexts.getItems().add(typeMemeText.getText());
+        allOfTheMemesObservableList.add(typeMemeText.getText());
+
+        typeMemeText.clear();
     }
 
     public void longMemeTyped() {

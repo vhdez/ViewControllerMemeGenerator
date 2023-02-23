@@ -29,7 +29,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="newButton" layoutX="458.0" layoutY="300.0" mnemonicParsing="false" onAction="#newButtonPressed" prefHeight="86.0" prefWidth="177.0" text="New...">
+      <Button fx:id="newButton" layoutX="457.0" layoutY="294.0" mnemonicParsing="false" onAction="#newButtonPressed" prefHeight="43.0" prefWidth="177.0" text="New...">
          <font>
             <Font size="17.0" />
          </font>
@@ -50,7 +50,7 @@
             <Font name="Arial Narrow Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="addImageButton1" layoutX="458.0" layoutY="408.0" mnemonicParsing="false" onAction="#deleteImage" prefHeight="86.0" prefWidth="177.0" text="Delete">
+      <Button fx:id="addImageButton1" layoutX="457.0" layoutY="344.0" mnemonicParsing="false" onAction="#deleteImage" prefHeight="43.0" prefWidth="177.0" text="Delete">
          <font>
             <Font size="17.0" />
          </font>
@@ -62,5 +62,7 @@
          </font>
       </Button>
       <ListView fx:id="allTheTexts" editable="true" layoutX="46.0" layoutY="628.0" prefHeight="156.0" prefWidth="577.0" />
+      <Button layoutX="458.0" layoutY="406.0" mnemonicParsing="false" onAction="#saveData" prefHeight="35.0" prefWidth="174.0" text="Save" />
+      <Button layoutX="458.0" layoutY="459.0" mnemonicParsing="false" onAction="#restoreData" prefHeight="35.0" prefWidth="174.0" text="Restore" />
    </children>
 </Pane>

@@ -10,9 +10,7 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class HelloController {
@@ -32,11 +30,11 @@ public class HelloController {
     // All of the App's data (its Model)
     ArrayList<Image> images;
     int currentImageNumber;
-    ArrayList<String> allOfTheMemesArrayList;
-    ObservableList<String> allOfTheMemesObservableList;
 
     // the setup code for your GUI
-    public void initialize() throws FileNotFoundException {
+    public void initialize() throws Exception {
+        restoreData();
+
         Image image1 = new Image(new FileInputStream(new File("images/cookie.png")));
         Image image2 = new Image(new FileInputStream(new File("images/BMO.jpg")));
         Image image3 = new Image(new FileInputStream(new File("images/CharlieBrown.png")));
@@ -57,9 +55,7 @@ public class HelloController {
         choosePicture.getSelectionModel().select(currentImageNumber);
         pictureNumberLabel.setText("Picture #" + (currentImageNumber+1) + " of " + images.size());
 
-        allOfTheMemesArrayList = new ArrayList<String>();
-        allOfTheMemesObservableList = FXCollections.observableArrayList();
-        allTheTexts.setItems(allOfTheMemesObservableList);
+
     }
 
     // all of the Controls' onAction methods
@@ -133,8 +129,7 @@ public class HelloController {
         memeTextDisplay.setFont(new Font("Comic Sans MS", 60));
         memeTextDisplay.setText("#" + typeMemeText.getText());
 
-//        allTheTexts.getItems().add(typeMemeText.getText());
-        allOfTheMemesObservableList.add(typeMemeText.getText());
+        allTheTexts.getItems().add(typeMemeText.getText());
 
         typeMemeText.clear();
     }
@@ -147,4 +142,32 @@ public class HelloController {
     public void memeColorChanged() {
         memeTextDisplay.setTextFill(memeTextColor.getValue());
     }
+
+    public void saveData() throws Exception {
+        FileOutputStream fileOut = new FileOutputStream("SavedMemeList");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+        // allTheTexts is my ListView. Save its ObservableList by turning it into an ArrayList.
+        ArrayList<String> temporaryList = new ArrayList<>(allTheTexts.getItems());
+        out.writeObject(temporaryList);
+
+        out.close();
+        fileOut.close();
+    }
+
+    public void restoreData() throws Exception {
+        FileInputStream fileIn = new FileInputStream("SavedMemeList");
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+
+        // Read the data into an ArrayList
+        ArrayList<String> temporaryList = (ArrayList<String>) in.readObject();
+        // Turn the ArrayList into an ObservableList
+        ObservableList temporaryObservableList = FXCollections.observableArrayList(temporaryList);
+        // Make that ObservableList the list for my ListView
+        allTheTexts.setItems(temporaryObservableList);
+
+        in.close();
+        fileIn.close();
+    }
+
 }
